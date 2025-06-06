@@ -1,0 +1,6 @@
+gcc -pg -o mp mp.c
+gprof mp gmon.out > profile.txt
+
+
+gcc -fprofile-arcs -ftest-coverage mp.c -o mp
+gcov mp.c

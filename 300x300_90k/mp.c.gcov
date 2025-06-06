@@ -1,0 +1,136 @@
+        -:    0:Source:mp.c
+        -:    0:Graph:mp.gcno
+        -:    0:Data:mp.gcda
+        -:    0:Runs:1
+        -:    0:Source is newer than graph
+        -:    1:
+        -:    2:#include <assert.h>
+        -:    3:#include <stdio.h>
+        -:    4:#include <stdlib.h>
+        -:    5:#include <unistd.h>  
+        -:    6:
+        -:    7:#include "grid.h"
+        -:    8:#include "walker.h"
+        -:    9:
+        -:   10:
+        -:   11:#define MAX_WALKERS 1000 // Maximum number of walkers
+        -:   12:
+        -:   13:// Function to perform DLA generation on a grid
+function generateDLA called 1 returned 100% blocks executed 100%
+        1:   14:void generateDLA(Grid *g, int maxWalkers) {
+        1:   15:    srand(time(NULL)); // Seed the random number generator
+call    0 returned 1
+call    1 returned 1
+        -:   16:
+    90001:   17:    for (int i = 0; i < maxWalkers; ++i) {
+branch  0 taken 90000
+branch  1 taken 1 (fallthrough)
+        -:   18:        // Alternate between spawning red and blue walkers
+        -:   19:
+    90000:   20:        if (i % 10000 == 0) {
+branch  0 taken 9 (fallthrough)
+branch  1 taken 89991
+        9:   21:            printf("At walker %d\n", i);
+call    0 returned 9
+        -:   22:            // Counter tmp = export_grid_to_ppm(g, g->w, g->h, "./output.ppm");
+        -:   23:            // printCounter(tmp);
+        -:   24:        //     GridDisplayColored(*g);
+        -:   25:        }
+        -:   26:
+    90000:   27:        int color = (i % 2 == 0) ? RED : BLUE;
+branch  0 taken 45000 (fallthrough)
+branch  1 taken 45000
+    90000:   28:        Walker w = spawnWalkerAtEdge(g, color);
+call    0 returned 90000
+        -:   29:
+        -:   30:        // Random walk until the walker interacts with the grid
+3503924950:   31:        while (1) {
+        -:   32:            // Move the walker and update the grid
+3504014950:   33:            WalkerMove(&w, g, 1);
+call    0 returned 3504014950
+        -:   34:
+        -:   35:            // Check if the walker is adjacent to any cluster
+        -:   36:            int cellValue;
+3504014950:   37:            if ((cellValue = isAdjacentToCluster(g, &w))) {
+call    0 returned 3504014950
+branch  1 taken 90000 (fallthrough)
+branch  2 taken 3503924950
+        -:   38:
+    90000:   39:                if (isWalkerClrMatch(&w, YELLOW) || isWalkerClrMatch(&w, PURPLE) || isWalkerClrMatch(&w, w.color)) {
+call    0 returned 90000
+branch  1 taken 89957 (fallthrough)
+branch  2 taken 43
+call    3 returned 89957
+branch  4 taken 70753 (fallthrough)
+branch  5 taken 19204
+call    6 returned 70753
+branch  7 taken 36168 (fallthrough)
+branch  8 taken 34585
+        -:   40:                    // Same color: form a cluster
+    55415:   41:                    WalkerPlaceOnGrid(&w, g);
+call    0 returned 55415
+        -:   42:                    
+        -:   43:                    // Spawn a green walker inside the cluster
+    55415:   44:                    SpawnGreen(w,g,1,0.1);
+call    0 returned 55415
+        -:   45:
+        -:   46:                    
+        -:   47:                } else {
+        -:   48:                    // Detonate at the current walker's position
+    34585:   49:                    if (i < MAX_WALKERS/2)
+branch  0 taken 16256 (fallthrough)
+branch  1 taken 18329
+        -:   50:                    {
+    16256:   51:                        detonate(g, w.x, w.y, 1, 1.0, 0.2);
+call    0 returned 16256
+        -:   52:                    }
+        -:   53:                    else
+        -:   54:                    {
+    18329:   55:                        detonate(g, w.x, w.y, 2, 0.4, 0.1);
+call    0 returned 18329
+        -:   56:                    }
+        -:   57:                    
+        -:   58:                }
+    90000:   59:                break;
+        -:   60:            }
+        -:   61:        }
+        -:   62:    }
+        1:   63:}
+        -:   64:
+        -:   65:
+function main called 1 returned 100% blocks executed 100%
+        1:   66:int main() {
+        1:   67:    int width = 40;
+        1:   68:    int height = 10;
+        -:   69:
+        -:   70:    // Generate multiple DLA maps
+        1:   71:    Grid g1 = GridInit(width, height);
+call    0 returned 1
+        -:   72:
+        -:   73:    // Points
+        1:   74:    g1.g[(height / 2) * width + (width / 2)] = YELLOW; // seed1 for g1
+        1:   75:    g1.g[(height / 2) * width + (width / 2) + 1] = YELLOW; // seed1 for g2
+        -:   76:
+        -:   77:
+        -:   78:    // GridDisplayColored(g1);
+        -:   79:
+        -:   80:
+        1:   81:    generateDLA(&g1, MAX_WALKERS);
+call    0 returned 1
+        -:   82:
+        -:   83:
+        -:   84:    GridDisplayColored(g1);
+        1:   85:
+call    0 returned 1
+        1:   86:    // Export the final fused grid
+call    0 returned 1
+        1:   87:    // printf("Exporting grid:\n");
+call    0 returned 1
+        -:   88:    // Counter stats = export_grid_to_ppm(&g1, g1.w, g1.h, "./output.ppm");
+        1:   89:    // printCounter(stats);
+call    0 returned 1
+        -:   90:    // Free memory
+        1:   91:    freeGrid(g1);
+        -:   92:
+        -:   93:    return 0;
+        -:   94:}

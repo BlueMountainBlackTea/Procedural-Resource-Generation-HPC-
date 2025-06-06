@@ -1,0 +1,88 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 59.54    258.64   258.64                             _mcount_private
+ 11.25    307.51    48.87                             WalkerMove
+ 11.21    356.21    48.70                             isAdjacentToCluster
+  9.78    398.68    42.47                             __fentry__
+  5.62    423.10    24.41                             GridSet
+  2.22    432.75     9.65        1     9.65    10.08  generateDLA
+  0.27    433.91     1.17                             GridDisplay
+  0.09    434.32     0.41    55415     0.00     0.00  SpawnGreen
+  0.02    434.41     0.09                             rand
+  0.00    434.43     0.02 3504544062     0.00     0.00  detonate
+  0.00    434.43     0.00 7008029902     0.00     0.00  __gcc_deregister_frame
+  0.00    434.43     0.00 3504104951     0.00     0.00  export_grid_to_ppm
+  0.00    434.43     0.00        1     0.00     0.00  printCounter
+
+			Call graph
+
+
+granularity: each sample hit covers 4 byte(s) for 0.00% of 434.43 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     59.5  258.64    0.00                 _mcount_private [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     11.2   48.87    0.00                 WalkerMove [2]
+                0.00    0.00 7008029900/7008029902     __gcc_deregister_frame [102]
+-----------------------------------------------
+                                                 <spontaneous>
+[3]     11.2   48.70    0.00                 isAdjacentToCluster [3]
+                0.00    0.00   98402/3504544062     detonate [11]
+-----------------------------------------------
+                                                 <spontaneous>
+[4]      9.8   42.47    0.00                 __fentry__ [4]
+-----------------------------------------------
+                                                 <spontaneous>
+[5]      5.6   24.41    0.00                 GridSet [5]
+-----------------------------------------------
+                9.65    0.43       1/1           main [7]
+[6]      2.3    9.65    0.43       1         generateDLA [6]
+                0.41    0.00   55415/55415       SpawnGreen [9]
+                0.02    0.00 3504445660/3504544062     detonate [11]
+                0.00    0.00 3504014950/3504104951     export_grid_to_ppm [12]
+-----------------------------------------------
+                                                 <spontaneous>
+[7]      2.3    0.00   10.08                 main [7]
+                9.65    0.43       1/1           generateDLA [6]
+                0.00    0.00       2/7008029902     __gcc_deregister_frame [102]
+                0.00    0.00       1/3504104951     export_grid_to_ppm [12]
+                0.00    0.00       1/1           printCounter [13]
+-----------------------------------------------
+                                                 <spontaneous>
+[8]      0.3    1.17    0.00                 GridDisplay [8]
+-----------------------------------------------
+                0.41    0.00   55415/55415       generateDLA [6]
+[9]      0.1    0.41    0.00   55415         SpawnGreen [9]
+-----------------------------------------------
+                                                 <spontaneous>
+[10]     0.0    0.09    0.00                 rand [10]
+-----------------------------------------------
+                0.00    0.00   98402/3504544062     isAdjacentToCluster [3]
+                0.02    0.00 3504445660/3504544062     generateDLA [6]
+[11]     0.0    0.02    0.00 3504544062         detonate [11]
+-----------------------------------------------
+                0.00    0.00       1/3504104951     main [7]
+                0.00    0.00   90000/3504104951     spawnWalkerAtEdge [93]
+                0.00    0.00 3504014950/3504104951     generateDLA [6]
+[12]     0.0    0.00    0.00 3504104951         export_grid_to_ppm [12]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[13]     0.0    0.00    0.00       1         printCounter [13]
+-----------------------------------------------
+                0.00    0.00       2/7008029902     main [7]
+                0.00    0.00 7008029900/7008029902     WalkerMove [2]
+[102]    0.0    0.00    0.00 7008029902         __gcc_deregister_frame [102]
+-----------------------------------------------
+
+Index by function name
+
+   [8] GridDisplay           [102] __gcc_deregister_frame  [3] isAdjacentToCluster
+   [5] GridSet                 [1] _mcount_private        [13] printCounter
+   [9] SpawnGreen             [11] detonate               [10] rand
+   [2] WalkerMove             [12] export_grid_to_ppm
+   [4] __fentry__              [6] generateDLA

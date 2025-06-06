@@ -1,0 +1,22 @@
+File 'mp.c'
+Lines executed:100.00% of 30
+Branches executed:100.00% of 16
+Taken at least once:100.00% of 16
+Calls executed:100.00% of 19
+Creating 'mp.c.gcov'
+
+File 'walker.h'
+Lines executed:77.86% of 131
+Branches executed:75.36% of 138
+Taken at least once:64.49% of 138
+Calls executed:63.33% of 30
+Creating 'walker.h.gcov'
+
+File 'grid.h'
+Lines executed:65.28% of 72
+Branches executed:57.89% of 38
+Taken at least once:44.74% of 38
+Calls executed:50.00% of 22
+Creating 'grid.h.gcov'
+
+Lines executed:76.82% of 233

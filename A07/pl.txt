@@ -1,0 +1,25 @@
+Benchmarking DLA Simulation with 90000 walkers on 300x300 grid
+Threads    Time (sec)      Speedup        
+------------------------------------
+Grid exported to img_1.ppm
+1          106.3308        1.1380         
+Grid exported to img_2.ppm
+2          60.9983         1.9837         
+Grid exported to img_4.ppm
+4          50.2280         2.4090         
+Grid exported to img_6.ppm
+6          43.7886         2.7633         
+Grid exported to img_8.ppm
+8          41.2168         2.9357         
+Grid exported to img_10.ppm
+10         37.5465         3.2227         
+Grid exported to img_12.ppm
+12         47.5587         2.5442         
+Grid exported to img_16.ppm
+16         41.3351         2.9273         
+Grid exported to img_20.ppm
+20         39.2440         3.0833         
+Grid exported to img_32.ppm
+32         33.7058         3.5899         
+Grid exported to img_64.ppm
+64         32.4087         3.7336         

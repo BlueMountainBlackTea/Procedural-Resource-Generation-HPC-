@@ -1,0 +1,8 @@
+serial time:121.404s
+Exporting grid:
+Grid exported to ./output.ppm
+__STATS___
+RED:4891
+BLUE:5015
+PURPLE:4295
+YELLOW:2
